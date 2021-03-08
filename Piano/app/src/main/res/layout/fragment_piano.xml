@@ -7,12 +7,24 @@
     tools:context=".PianoLayout">
 
     <LinearLayout
-        android:id="@+id/pianoKeys"
-        android:layout_width="match_parent"
+        android:id="@+id/whitePianoKeysLayout"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fileNameTextEdit"
+        />
+
+    <LinearLayout
+        android:id="@+id/blackPianoKeysLayout"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fileNameTextEdit"
         />
 
     <EditText
