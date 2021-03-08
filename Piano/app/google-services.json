@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "440645875010",
+    "project_id": "piano-uia",
+    "storage_bucket": "piano-uia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440645875010:android:650ea9c7b8c6b686f3c4db",
+        "android_client_info": {
+          "package_name": "no.uia.ikt205.superpiano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440645875010-3i0nff1v0g68q1pmph4elvptol3h8q76.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgDAiBBzTuocj2wKEbFS0swLoAhTN6uxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440645875010-3i0nff1v0g68q1pmph4elvptol3h8q76.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

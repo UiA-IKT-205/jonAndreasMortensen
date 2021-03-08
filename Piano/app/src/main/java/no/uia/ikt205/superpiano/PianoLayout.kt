@@ -1,5 +1,6 @@
 package no.uia.ikt205.superpiano
 
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_full_tone_piano_key.*
 import kotlinx.android.synthetic.main.fragment_full_tone_piano_key.view.*
@@ -24,6 +26,8 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class PianoLayout : Fragment() {
+
+    var onSave:((file: Uri) -> Unit)? = null
 
     private var _binding:FragmentPianoBinding? = null
     private val binding get() = _binding!!
@@ -77,7 +81,7 @@ class PianoLayout : Fragment() {
                 println("(PROCESSED) $it was pressed for $totalFullTone seconds (PROCESSED)") // Used for debugging
             }
 
-            ft.add(view.pianoKeys.id,fullTonePianoKey,"note_$orgNoteValue")
+            ft.add(view.whitePianoKeysLayout.id,fullTonePianoKey,"note_$orgNoteValue")
         }
 
 
@@ -110,7 +114,7 @@ class PianoLayout : Fragment() {
                 println("(PROCESSED) $it was pressed for $totalHalfTone seconds (PROCESSED)") // Used for debugging
             }
 
-            ft.add(view.pianoKeys.id,halfTonePianoKey,"note_$orgNoteValue")
+            ft.add(view.blackPianoKeysLayout.id,halfTonePianoKey,"note_$orgNoteValue")
         }
 
         ft.commit()
@@ -126,19 +130,37 @@ class PianoLayout : Fragment() {
                if (score.count() > 0 && fileName.isNotEmpty() && path != null){
                        if(fileExists){
                            println("$fileName already exist! Enter different file name.")
-                           Toast.makeText(activity,"$fileName does exist. Enter different file name.", Toast.LENGTH_SHORT).show()
+                           Toast.makeText(activity,"$fileName already exist! Enter different file name.", Toast.LENGTH_SHORT).show()
                        } else{
-                           FileOutputStream(File(path,fileName),true).bufferedWriter().use { writer ->
-                               score.forEach {
-                                   writer.write("${it.toString()}\n")
-                               }
-                           }
+                           val content:String = score.map{
+                               it.toString()
+                           }.reduce{acc, s-> acc + s + "\n"}
+                           saveFile(fileName,content)
+                           println("$fileName is saved")
+                           Toast.makeText(activity,"$fileName is saved", Toast.LENGTH_SHORT).show()
                        }
-
                     }
 
         }
 
         return view
     }
+
+    private fun saveFile(fileName:String,content:String){
+        val path = this.activity?.getExternalFilesDir(null)
+        if (path != null){
+            val file = File(path, fileName)
+            FileOutputStream(file, true).bufferedWriter().use { writer ->
+                writer.write(content)
+            }
+
+            this.onSave?.invoke(file.toUri());
+
+        } else {
+            // User warning
+            println("Could not get external path.")
+            Toast.makeText(activity,"Could not get external path.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
