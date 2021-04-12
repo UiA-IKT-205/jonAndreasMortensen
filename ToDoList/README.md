@@ -24,9 +24,9 @@ track the progress.
 
 <img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/groceries-milk-bread.png" width="750"/>
 
-<img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/mlik.png" width="750"/>
-
 <img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/bread.png" width="750"/>
+
+<img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/mlik.png" width="750"/>
 
 ## Installation
 
