@@ -12,9 +12,9 @@ track the progress.
 
 ## Frontend
 
-<img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/to-do-lists.png" width="250"/>
+<img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/to-do-lists-2.png" width="250"/>
 
-<img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/grocery-list.png" width="250"/>
+<img src="https://github.com/UiA-IKT-205/jonAndreasMortensen/blob/main/ToDoList/examples/grocery-list-2.png" width="250"/>
 
 ## Backend
 
