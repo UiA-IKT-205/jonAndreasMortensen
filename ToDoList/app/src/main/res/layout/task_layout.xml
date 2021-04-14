@@ -28,6 +28,7 @@
         android:layout_marginStart="55dp"
         android:text="Example ToDo"
         android:textSize="24sp"
+        android:textColor="#00FF0A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/cbDone"
         app:layout_constraintStart_toStartOf="parent"

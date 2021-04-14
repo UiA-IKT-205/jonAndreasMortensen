@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".books.CatDetailsActivity">
+    android:background="#343335"
+    tools:context=".todos.CatDetailsActivity">
 
     <TextView
         android:id="@+id/catName"
@@ -15,8 +16,8 @@
         android:textSize="30dp"
         android:gravity="center|bottom"
         android:includeFontPadding="true"
-        android:background="#81BFBFBF"
-        android:textColor="@color/black"
+        android:background="#81000000"
+        android:textColor="#00FF0A"
         app:layout_constraintBottom_toTopOf="@id/progressBarSecond"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -28,8 +29,8 @@
         android:padding="20dp"
         android:progress="0"
         android:max="100"
-        android:background="#81BFBFBF"
-        android:progressTint="#009688"
+        android:background="#81000000"
+        android:progressTint="#00FF0A"
         app:layout_constraintBottom_toTopOf="@+id/rvTodoItems" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -45,6 +46,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Enter Task "
+        android:textColorHint="#3F8028"
+        android:textColor="#00FF0A"
+        android:backgroundTint="#00FF0A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnAddTodo"
         app:layout_constraintStart_toStartOf="parent" />
@@ -55,6 +59,7 @@
         android:layout_height="wrap_content"
         android:text="Add Task"
         android:backgroundTint="@color/black"
+        android:textColor="#00FF0A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDeleteDoneTodos" />
 
@@ -64,6 +69,7 @@
         android:layout_height="wrap_content"
         android:text="Delete Done"
         android:backgroundTint="@color/black"
+        android:textColor="#00FF0A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

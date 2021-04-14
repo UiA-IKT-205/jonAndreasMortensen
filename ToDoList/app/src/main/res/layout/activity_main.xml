@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#343335"
     tools:context=".MainActivity">
 
     <TextView
@@ -24,7 +25,7 @@
         android:id="@+id/slang"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:text="Tells You What To Do!"
+        android:text="Tell You What To Do!"
         android:textSize="20sp"
         android:gravity="center|top"
         android:includeFontPadding="true"
@@ -64,6 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:textColorHint="#3F8028"
+            android:textColor="#00FF0A"
+            android:backgroundTint="#00FF0A"
             android:hint="Enter category"/>
 
         <Button
@@ -71,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
+            android:textColor="#00FF0A"
             android:text="Save" />
 
     </LinearLayout>

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:textColor="#00FF0A"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:text="Bok titel" />
+            tools:text="Category Title" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -34,7 +34,7 @@
             android:padding="5dp"
             android:progress="0"
             android:max="100"
-            android:progressTint="#009688"
+            android:progressTint="#00FF0A"
             app:layout_constraintBottom_toTopOf="@+id/rvTodoItems" />
 
         <ImageView
@@ -43,7 +43,7 @@
             android:layout_height="25dp"
             android:gravity="center"
             android:scaleType="fitXY"
-            android:src="@drawable/delete"
+            android:src="@drawable/delete2"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     </LinearLayout>

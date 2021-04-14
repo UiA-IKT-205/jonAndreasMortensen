@@ -8,18 +8,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_cat_details.*
-import no.uia.ikt205.todolist.CategoryHolder
-import no.uia.ikt205.todolist.todos.data.Category
+import no.uia.ikt205.todolist.CatHolder
+import no.uia.ikt205.todolist.todos.data.Cat
 import no.uia.ikt205.todolist.todos.data.Tasks
 import no.uia.ikt205.todolist.databinding.ActivityCatDetailsBinding
 
-var receivedCategoryFormatted = ""
+var receivedCatFormatted = ""
 val TAG = "CatDetailsActivity"
 
 class CatDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCatDetailsBinding
-    lateinit var category:Category
+    lateinit var cat:Cat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,16 +37,15 @@ class CatDetailsActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
-        if(CategoryHolder.pickedCategory != null){
-            category = CategoryHolder.pickedCategory!!
-            Log.i("Details view", category.toString())
+        if(CatHolder.PickedCat != null){
+            cat = CatHolder.PickedCat!!
+            Log.i("Details view", cat.toString())
 
-            receivedCategoryFormatted = category.toString().replace("Category(category=", "")
+            receivedCatFormatted = cat.toString().replace("Cat(category=", "")
 
-            // Importerer oppgaver fra Firestore
             db.collection("Categories")
-                .document(receivedCategoryFormatted.replace(")", ""))
-                .collection(receivedCategoryFormatted.replace(")", ""))
+                .document(receivedCatFormatted.replace(")", ""))
+                .collection(receivedCatFormatted.replace(")", ""))
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
@@ -68,7 +67,7 @@ class CatDetailsActivity : AppCompatActivity() {
                     Log.w(TAG, "Error getting documents: ", exception)
                 }
 
-            binding.catName.text = receivedCategoryFormatted.replace(")", "")
+            binding.catName.text = receivedCatFormatted.replace(")", "")
 
         } else{
             setResult(RESULT_CANCELED, Intent().apply {
@@ -76,9 +75,8 @@ class CatDetailsActivity : AppCompatActivity() {
             finish()
         }
 
-        // Oppdaterer fremgangsbaren
         db.collection("Progress")
-            .document(receivedCategoryFormatted.replace(")", ""))
+            .document(receivedCatFormatted.replace(")", ""))
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     Log.w(TAG, "Listen failed.", e)
@@ -89,19 +87,18 @@ class CatDetailsActivity : AppCompatActivity() {
                     Log.d(TAG, "Current data: ${snapshot.data}")
                     val progress = snapshot.data.toString().replace("{progress=", "")
                     val formattedProgress = progress.replace("}", "")
-                    binding.progressBarSecond.progress = formattedProgress.toInt() // Updates progress bar value
+                    binding.progressBarSecond.progress = formattedProgress.toInt()
                 } else {
                     Log.d(TAG, "Current data: null")
                 }
             }
 
-        // Legger en oppgave til Firestore og liste
         btnAddTodo.setOnClickListener {
             val todoTitle = etTodoTitle.text.toString()
 
             if(todoTitle.isNotEmpty()) {
                 var todo = Tasks(todoTitle, false)
-                val receivedCatFormatted = category.toString().replace("Cat(category=", "")
+                val receivedCatFormatted = cat.toString().replace("Cat(category=", "")
                 val todoy = hashMapOf(
 
                     "done" to false
@@ -126,9 +123,8 @@ class CatDetailsActivity : AppCompatActivity() {
             }
         }
 
-        // Sletter avkryssede oppgaver fra Firestore og liste
         btnDeleteDoneTodos.setOnClickListener {
-            val receivedBookFormatted = category.toString().replace("Cat(category=", "")
+            val receivedBookFormatted = cat.toString().replace("Cat(category=", "")
 
             TaskDepositoryManager.instance.deleteDoneTasks()
 
@@ -144,7 +140,25 @@ class CatDetailsActivity : AppCompatActivity() {
                             .collection(receivedBookFormatted.replace(")", ""))
                             .document(document.id)
                             .delete()
-                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                            .addOnSuccessListener {
+                                Log.d(TAG, "DocumentSnapshot successfully deleted!")
+
+                                // Returns progress bar to 0
+                                val doc = hashMapOf(
+                                    "progress" to 0
+                                )
+
+                                db.collection("Progress")
+                                    .document(receivedCatFormatted.replace(")", ""))
+                                    .set(doc)
+                                    .addOnSuccessListener {
+                                        Log.d(TAG, "Changed progress")
+                                    }
+                                    .addOnFailureListener {
+                                        Log.w(TAG, "Failed to change progress!")
+                                    }
+
+                            }
                             .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
                     }
                 }

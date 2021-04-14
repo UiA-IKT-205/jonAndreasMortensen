@@ -12,12 +12,12 @@ import com.google.firebase.ktx.Firebase
 import no.uia.ikt205.todolist.todos.CatCollectionAdapter
 import no.uia.ikt205.todolist.todos.CatDepositoryManager
 import no.uia.ikt205.todolist.todos.CatDetailsActivity
-import no.uia.ikt205.todolist.todos.data.Category
+import no.uia.ikt205.todolist.todos.data.Cat
 import no.uia.ikt205.todolist.databinding.ActivityMainBinding
 
-class CategoryHolder{
+class CatHolder{
     companion object{
-        var pickedCategory:Category? = null
+        var PickedCat:Cat? = null
     }
 }
 
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bookListing.layoutManager = LinearLayoutManager(this)
-        binding.bookListing.adapter = CatCollectionAdapter(emptyList<Category>(), this::onCatClicked)
+        binding.bookListing.adapter = CatCollectionAdapter(emptyList<Cat>(), this::onCatClicked)
 
         CatDepositoryManager.instance.onCats = {
             (binding.bookListing.adapter as CatCollectionAdapter).updateCollection(it)
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addCat(category: String) {
-        val cat = Category(category)
+        val cat = Cat(category)
         val db = Firebase.firestore
 
         val ex = hashMapOf(
@@ -80,8 +80,8 @@ class MainActivity : AppCompatActivity() {
         CatDepositoryManager.instance.addCat(cat)
     }
 
-    private fun onCatClicked(category: Category): Unit {
-        CategoryHolder.pickedCategory = category
+    private fun onCatClicked(cat: Cat): Unit {
+        CatHolder.PickedCat = cat
 
         val intent =Intent(this, CatDetailsActivity::class.java)
 

@@ -36,10 +36,9 @@ class TasksCollectionAdapter(private var tasks:List<Tasks>) : RecyclerView.Adapt
             cbDone.setOnCheckedChangeListener { _, isChecked ->
                 task.isChecked = !task.isChecked
 
-                // Endrer status i Firestore
                 db.collection("Categories")
-                    .document(receivedCategoryFormatted.replace(")", ""))
-                    .collection(receivedCategoryFormatted.replace(")", ""))
+                    .document(receivedCatFormatted.replace(")", ""))
+                    .collection(receivedCatFormatted.replace(")", ""))
                     .document(tvTodoTitle.text as String)
                     .update("done", cbDone.isChecked)
                     .addOnSuccessListener {
@@ -49,10 +48,9 @@ class TasksCollectionAdapter(private var tasks:List<Tasks>) : RecyclerView.Adapt
                         println("Failed to change status!")
                     }
 
-                // Kalkulerer og oppdaterer fremgang
                 db.collection("Categories")
-                    .document(receivedCategoryFormatted.replace(")", ""))
-                    .collection(receivedCategoryFormatted.replace(")", ""))
+                    .document(receivedCatFormatted.replace(")", ""))
+                    .collection(receivedCatFormatted.replace(")", ""))
                     .whereEqualTo("done", true)
                     .get()
                     .addOnSuccessListener { documents ->
@@ -71,7 +69,7 @@ class TasksCollectionAdapter(private var tasks:List<Tasks>) : RecyclerView.Adapt
                         )
 
                         db.collection("Progress")
-                            .document(receivedCategoryFormatted.replace(")", ""))
+                            .document(receivedCatFormatted.replace(")", ""))
                             .set(doc)
                             .addOnSuccessListener {
                                 println("Changed progress")
