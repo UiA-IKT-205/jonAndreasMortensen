@@ -1,0 +1,35 @@
+package no.uia.ikt205.knotsandcrosses
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.provider.AlarmClock
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_win.*
+import no.uia.ikt205.knotsandcrosses.databinding.ActivityWinBinding
+
+class WinActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWinBinding
+
+    @SuppressLint("SetTextI18n")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityWinBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val winner = intent.getStringExtra(AlarmClock.EXTRA_MESSAGE).toString()
+
+        findViewById<TextView>(R.id.win_text).apply {
+            // val regex = Regex("[^A-Za-z0-9]")
+            // val result = regex.replace(winner, " ")
+            // text = result
+            text = winner
+        }
+
+        backGameButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+}
