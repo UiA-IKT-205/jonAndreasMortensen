@@ -1,4 +1,4 @@
-package no.uia.ikt205.knotsandcrosses
+package no.uia.ikt205.thgame
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.provider.AlarmClock
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_win.*
+import no.uia.ikt205.knotsandcrosses.R
 import no.uia.ikt205.knotsandcrosses.databinding.ActivityWinBinding
 
 class WinActivity : AppCompatActivity() {
@@ -20,10 +21,8 @@ class WinActivity : AppCompatActivity() {
 
         val winner = intent.getStringExtra(AlarmClock.EXTRA_MESSAGE).toString()
 
+        // Viser "X won!", "O won!" eller "Draw!" på skjermen
         findViewById<TextView>(R.id.win_text).apply {
-            // val regex = Regex("[^A-Za-z0-9]")
-            // val result = regex.replace(winner, " ")
-            // text = result
             text = winner
         }
 

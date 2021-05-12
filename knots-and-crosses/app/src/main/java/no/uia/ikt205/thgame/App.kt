@@ -1,4 +1,4 @@
-package no.uia.ikt205.knotsandcrosses
+package no.uia.ikt205.thgame
 
 import android.app.Application
 

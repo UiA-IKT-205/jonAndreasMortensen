@@ -1,7 +1,7 @@
 package no.uia.ikt205.thgame
 
-import no.uia.ikt205.knotsandcrosses.api.GameService
-import no.uia.ikt205.knotsandcrosses.api.data.Game
+import no.uia.ikt205.thgame.api.GameService
+import no.uia.ikt205.thgame.api.data.Game
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,12 +11,13 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+
 class ExampleUnitTest {
 
-    var gameState:Game? = null
-    val firstPlayer:String = "Christian"
-    val secondPlayer:String = "Christian"
-    val initState = arrayOf(charArrayOf('0','0','0'), charArrayOf('0','0','0'), charArrayOf('0','0','0')) // listOf(listOf(0,0,0), listOf(0,0,0), listOf(0,0,0))
+    private var gameState: Game? = null
+    private val firstPlayer:String = "Christian"
+    private val secondPlayer:String = "Christian"
+    private val initState = listOf(mutableListOf('0','0','0'), mutableListOf('0','0','0'), mutableListOf('0','0','0')) // listOf(listOf(0,0,0), listOf(0,0,0), listOf(0,0,0))
 
     @Test
     fun createGame(){

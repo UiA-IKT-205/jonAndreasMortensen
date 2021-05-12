@@ -9,7 +9,7 @@
     <string name="join_game_path">/%1s/join</string>
     <string name="poll_game_path">/%1s/poll</string>
     <string name="update_game_path">/%1s/update</string>
-    <string name="game_service_key">1WlPGAGTi4</string>
+    <string name="game_service_key">Zxzro8jMMi</string>
 
     <string name="tre_pa_rad_logo">Tre på rad logo</string>
     <string name="knots_and_crosses">Knots and Crosses</string>
@@ -24,4 +24,7 @@
     <string name="player_ids">Player IDs</string>
     <string name="go_back">Go back</string>
     <string name="player_win_id">Player ID</string>
+    <string name="gameIdStatus">"Game ID : "</string>
+    <string name="victory">Victory!</string>
+    <string name="yourMove">Your move</string>
 </resources>

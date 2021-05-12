@@ -21,12 +21,12 @@ class CreateGameDialog() : DialogFragment() {
 
             builder.apply {
                 setTitle("Create game")
-                setPositiveButton("Create") { dialog, which ->
+                setPositiveButton("Create") { _, _ ->
                     if(binding.username.text.toString() != ""){
                         listener.onDialogCreateGame(binding.username.text.toString())
                     }
                 }
-                setNegativeButton("Cancel") { dialog, which ->
+                setNegativeButton("Cancel") { dialog, _ ->
                     dialog.cancel()
                 }
                 setView(binding.root)

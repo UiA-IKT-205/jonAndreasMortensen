@@ -1,4 +1,4 @@
-package no.uia.ikt205.knotsandcrosses
+package no.uia.ikt205.thgame
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
 import no.uia.ikt205.knotsandcrosses.databinding.ActivityMainBinding
-import no.uia.ikt205.thgame.GameManager
 import no.uia.ikt205.thgame.dialogs.CreateGameDialog
 import no.uia.ikt205.thgame.dialogs.GameDialogListener
 import no.uia.ikt205.thgame.dialogs.JoinGameDialog
 
 class MainActivity : AppCompatActivity() , GameDialogListener {
 
-    val TAG:String = "MainActivity"
+    private val TAG:String = "MainActivity"
 
     lateinit var binding:ActivityMainBinding
 
